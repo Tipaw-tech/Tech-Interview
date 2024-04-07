@@ -1,49 +1,97 @@
-export const theme = {
-  font: {
-    default: "'Open Sans', 'Helvetica', sans-serif",
-    alternate: "'Source Serif 4', serif",
+import { createTheme } from '@mui/material/styles';
+import {
+  grey, red,
+} from '@mui/material/colors';
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    palette: {
+      mode: string,
+      primary: {
+        main: string,
+        contrastText: string,
+      },
+      error: {
+        main: string,
+        contrastText: string,
+      },
+      warning: {
+        main: string,
+        contrastText: string,
+      },
+      secondary: {
+        main: string,
+        contrastText: string,
+        light?: string;
+        dark?: string;
+        50: string,
+        100: string,
+        200: string,
+        300: string,
+        400: string,
+        500: string,
+        600: string,
+        700: string,
+        800: string,
+        900: string,
+      },
+      success: {
+        main: string,
+        dark: string,
+        contrastText: string,
+      },
+      background: {
+        default: string,
+      },
+      green: {
+        main: string,
+        dark: string,
+        contrastText: string,
+      },
+      text: {
+        primary: string,
+      },
+      tonalOffset: number,
+    };
+    typography: {
+      htmlFontSize: number,
+      fontSize: number,
+    };
+  }
+}
+
+export default createTheme({
+  palette: {
+    mode: 'light',
+    primary: {
+      main: '#5ACEE8',
+    },
+    success: {
+      main: '#03C9A9'
+    },
+    text: {
+      primary: '#616B77',
+    },
   },
-  color: {
-    tranparent: "transparent",
-    light: {
-      default: "white",
-      tint: "#f8f8f8",
-      tintDarker: "#f2f5f7",
-      shadeLighter: "#f0f0f0",
-      shade: "#d7dae0",
-    },
-    medium: {
-      default: "#8c96a3",
-      tint: "#c5ccd6",
-      shade: "#616b77",
-    },
-    dark: {
-      default: "#707070",
-      tint: "",
-      shade: "#4d4d4d",
-    },
-    purple: {
-      default: "#7358a7",
-      tint: "#eee2fa",
-    },
-    red: {
-      default: "#ff453e",
-      glass: "rgba(255, 69, 62, .2)",
-    },
-    green: {
-      default: "#03c9a9",
-      glass: "#e4fdf0",
-    },
-    yellow: { default: "#ffcc01", tint: "#FFEECC" },
-    blue: {
-      default: "#5acee8",
-      tint: "#8fdced",
-      glass: "rgba(90,206,232,.2)",
-      glassShade: "rgba(90,206,232,.1)",
-      darkerBlue: "#1c5b86",
-    },
-    black: {
-      default: "#000",
+  typography: {
+    htmlFontSize: 14,
+    fontSize: 14,
+    fontFamily: "'Open Sans', 'Helvetica', sans-serif",
+  },
+  zIndex: {
+    tooltip: 2100,
+  },
+  components: {
+    MuiTypography: {
+      styleOverrides: {
+        root: {
+          fontSize: 14,
+          textTransform: 'none',
+          fontWeight: 400,
+          color: '#616B77',
+        },
+      },
     },
   },
-};
+});
+

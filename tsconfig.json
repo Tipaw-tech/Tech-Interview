@@ -19,7 +19,13 @@
     "jsx": "react-jsx",
     "noUnusedParameters": false,
     "noUnusedLocals": false,
-    "allowUnusedLabels": true
+    "allowUnusedLabels": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/presentation/components/*"],
+      "@/types": ["./src/presentation/pages/HomePage/types.ts"],
+      "@/styled": ["./src/presentation/pages/HomePage/styled.ts"],
+    },
   },
   "include": ["src"],
   "exclude": ["node_modules", "build", "**/node_modules/*", "**/build/*"]

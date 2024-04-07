@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { FC, lazy, Suspense } from "react";
 import { ThemeProvider } from "@emotion/react";
-import { theme } from "./theme";
+import theme from "./theme";
 
 const HomePageController = lazy(() => import("./pages/HomePageController"));
 

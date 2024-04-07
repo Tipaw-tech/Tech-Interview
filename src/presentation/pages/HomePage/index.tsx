@@ -1,56 +1,48 @@
-import React, { FC } from "react";
-import { HomePageProps } from "./types";
+import { FC } from "react";
+import {
+  Container,
+} from '@mui/material';
+import { HomePageProps, ProgressItemConfigProps } from "./types";
 import * as Styled from "./styled";
-import { FaCheck } from "react-icons/fa";
-import { useTheme } from "@emotion/react";
-
+import Header from './components/Header'
+import ProgressItem from './components/ProgressItem';
+import Announcements from './components/Announcements'
 export * from "./types";
 
-/*
- Feel free to change this page however you wish
- You can divide this page into smaller components if you wish to
-
-*/
 export const HomePage: FC<HomePageProps> = (props) => {
   const { announcements, profile } = props;
-  const theme = useTheme();
+
+  const config = [
+    {
+      label: 'Verification',
+      text: 'You verified your account',
+      value: profile.verified
+    }, {
+      label: 'Profile picture',
+      text: 'You added your profile picture',
+      value: profile.profilePictureIsVerified
+    }, {
+      label: 'Parents',
+      text: 'You added the parents',
+      value: profile.parentsVerified
+    }, {
+      label: 'Litter',
+      text: 'Your created the litter',
+      value: profile.litterVerified
+    }
+  ] as ProgressItemConfigProps[]
 
   return (
-    <Styled.PageWrapper>
-      <Styled.HeaderContainer>
-        My Tipaw
-        <div>Fr - Nl</div>
-        <img src={profile.avatar} width="50px" alt="some guy with a dog" />
-        {profile.name}
-      </Styled.HeaderContainer>
-      Profile Completed {profile.globalProgress}% Verification
-      <Styled.ProgressContainer>
-        <Styled.ProgressItem>
-          Verification : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          Profile picture : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          Parents : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          Litter : <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-        <Styled.ProgressItem>
-          <FaCheck color={theme.color.green.default} />
-        </Styled.ProgressItem>
-      </Styled.ProgressContainer>
-      <Styled.AnnouncementsContainer>
-        Announcements from TIPAW
-        {announcements.map((announcement, index) => (
-          <Styled.AnnouncementsContainer key={announcement.id}>
-            <div>{announcement.title}</div>
-            <div>{announcement.content}</div>
-            <div>{announcement.date}</div>
-          </Styled.AnnouncementsContainer>
-        ))}
-      </Styled.AnnouncementsContainer>
+    <Styled.PageWrapper disableGutters>
+      <Header avatar={profile.avatar} name={profile.name}/>
+      <Container>
+        <Styled.PageItemWrapper>
+          <ProgressItem config={config} globalProgress={profile.globalProgress} />
+        </Styled.PageItemWrapper>
+        <Styled.PageItemWrapper>
+          <Announcements list={announcements} />
+        </Styled.PageItemWrapper>
+      </Container>
     </Styled.PageWrapper>
   );
 };
